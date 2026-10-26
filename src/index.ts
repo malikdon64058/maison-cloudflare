@@ -14,7 +14,7 @@ async function productView(env: Env, p: any) {
 }
 async function getCart(env: Env, token: string) {
   await env.DB.prepare('INSERT OR IGNORE INTO carts(token) VALUES(?)').bind(token).run();
-  const items = await env.DB.prepare(`SELECT ci.id AS itemId, ci.product_id AS productId, ci.variant_id AS variantId, ci.qty, p.name AS productName, p.slug, p.image_key AS imageKey, p.price_cents AS basePrice, p.sale_price_cents AS salePrice, v.name AS variantName, v.price_delta_cents AS priceDelta, v.sku AS variantSku, p.sku AS productSku, COALESCE(v.stock, p.stock) AS stock FROM cart_items ci JOIN products p ON p.id=ci.product_id LEFT JOIN variants v ON v.id=ci.variant_id WHERE ci.cart_token=?`).bind(token).all();
+  const items = await env.DB.prepare(`SELECT ci.id AS itemId, ci.product_id AS productId, ci.variant_id AS variantId, ci.qty, p.name AS productName, p.slug, p.image_key AS imageKey, p.price_cents AS basePrice, p.sale_price_cents AS salePrice, v.name AS variantName, v.price_delta_cents AS priceDelta, v.sku AS variantSku, p.sku AS productSku, COALESCE(v.stock, p.stock) AS stock, (SELECT url FROM product_media WHERE product_id=p.id ORDER BY sort ASC, id ASC LIMIT 1) AS mediaUrl FROM cart_items ci JOIN products p ON p.id=ci.product_id LEFT JOIN variants v ON v.id=ci.variant_id WHERE ci.cart_token=?`).bind(token).all();
   const cart = await env.DB.prepare('SELECT coupon_code AS couponCode FROM carts WHERE token=?').bind(token).first<any>();
   let subtotal = 0;
   const lines = items.results.map((i: any) => {
