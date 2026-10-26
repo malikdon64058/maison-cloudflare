@@ -1,0 +1,21 @@
+# Maison — Cloudflare Worker + D1
+# Replace the placeholder database_id after `wrangler d1 create maison`
+# (see README). Do NOT commit real secrets here.
+name = "maison"
+main = "src/index.ts"
+compatibility_date = "2025-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "maison"
+database_id = "a81667f9-0e6d-4fde-8652-d29ec4d506da"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+[vars]
+TAX_RATE_PERCENT = "8"
+FREE_SHIPPING_THRESHOLD_CENTS = "15000"
