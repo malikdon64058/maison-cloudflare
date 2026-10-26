@@ -18,13 +18,13 @@ real email provider before a real launch.
   Furniture, Kitchen & Dining), with variants, sale prices, stock and
   featured flags. Gallery views (main, detail, texture, wide, left,
   right, zoom) are derived from each product's `image_key`.
-- **Placeholder images:** the original catalogue photography is not
+- **Catalogue illustrations:** the original catalogue photography is not
   exportable from the Muse artifact, so gallery views in this build are
-  styled SVG/gradient placeholders keyed by `image_key`, clearly labelled
-  as placeholders in the UI and in the SVG itself. Replace
+  stylised SVG product illustrations keyed by `image_key` (a silhouette
+  per product type, in a deterministic colour per product). Replace
   `/api/placeholder` / `public` image handling with real product photos
   when you have them — the media-upload feature below is the intended
-  way to add real photos per product.
+  way to add real photos per product, and uploaded photos lead the gallery.
 - Search with suggestions, category filter, sorting, pagination.
 - Server-side persistent cart (cart token), coupons:
   `WELCOME10` (10% off), `MAISON25` ($25 off, $150 minimum subtotal),
