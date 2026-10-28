@@ -1,49 +1,83 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Maison — Home Goods</title><meta name="description" content="Maison: ceramics, textiles, lighting, furniture and kitchen & dining.">
+
 <style>
-body{font-family:Georgia,serif;color:#2b2118;background:#faf6f1;margin:0;line-height:1.5}
-header{display:flex;gap:20px;align-items:center;padding:16px 28px;background:#fff;border-bottom:1px solid #e5d9cc;position:sticky;top:0;z-index:10}
-header strong{font-size:22px;letter-spacing:1px}
-nav a{margin-right:14px;color:#2b2118;text-decoration:none;cursor:pointer;font-size:15px}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#f5efe6;background:#17120f;margin:0;line-height:1.5}
+h1,h2,h3,h4,.serif{font-family:Georgia,'Times New Roman',serif}
+a{color:#f5efe6}
+.announce{background:#f3ead9;color:#17120f;text-align:center;padding:10px 16px;font-size:14px}
+header{display:flex;gap:22px;align-items:center;padding:16px 28px;background:#17120f;border-bottom:1px solid #2e261f;position:sticky;top:0;z-index:10;flex-wrap:wrap}
+header strong{font-family:Georgia,serif;font-size:24px}
+nav a{margin-right:16px;color:#f5efe6;text-decoration:none;cursor:pointer;font-size:14px;font-weight:600}
 nav a:hover{text-decoration:underline}
-main{max-width:1180px;margin:0 auto;padding:28px 24px 60px}
-.hero{padding:36px 0 24px}
-.hero h1{font-size:44px;line-height:1.1;margin:0 0 10px;max-width:640px}
-.hero p{font-size:18px;color:#7a6758;margin:0 0 20px;max-width:640px}
+header .searchbox{margin-left:auto}
+header .searchbox input{background:#221b16;border:1px solid #3a2f26;color:#f5efe6;border-radius:999px;padding:10px 16px;width:260px}
+main{max-width:1180px;margin:0 auto;padding:0 24px 60px}
+.hero{position:relative;border-radius:20px;overflow:hidden;margin:24px 0 32px;min-height:420px;display:flex;align-items:flex-end;background:#2a211a}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.62))}
+.hero .copy{position:relative;padding:36px;max-width:620px}
+.hero h1{font-size:52px;line-height:1.05;margin:0 0 12px}
+.hero p{font-size:17px;color:#efe7da;margin:0 0 20px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.btnwhite{background:#fff;color:#17120f;border:0;padding:12px 20px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px}
+.btndark{background:#221b16;color:#fff;border:1px solid #4a3d31;padding:12px 20px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px}
+.section{margin:36px 0}
+.section h2{font-size:28px;margin:0 0 16px}
+.section .head{display:flex;justify-content:space-between;align-items:baseline}
+.section .head a{cursor:pointer;font-size:14px}
+.catgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.catcard{background:#221b16;border:1px solid #2e261f;border-radius:14px;padding:18px;cursor:pointer}
+.catcard h3{margin:0 0 4px;font-size:18px}
+.catcard p{margin:0;color:#b8a99a;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:transparent;padding:0;display:flex;flex-direction:column}
+.card .imgwrap{position:relative;border-radius:14px;overflow:hidden;background:#2a211a}
+.card .imgwrap img{width:100%;height:300px;object-fit:cover;display:block;cursor:pointer}
+.badge-sale{position:absolute;top:12px;left:12px;background:#e0784a;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.badge-photos{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px}
+.heart{position:absolute;top:10px;right:10px;background:#fff;color:#c25a3a;border:0;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1}
+.card .cat{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b8a99a;margin:12px 0 2px}
+.card h3{margin:0 0 4px;font-size:18px;cursor:pointer;min-height:2.6em}
+.card .stars{color:#e0784a;font-size:14px}
+.card .price{margin:auto 0 10px;font-weight:600;padding-top:6px}
+.card .price s{color:#b8a99a;font-weight:400}
+.addbag{width:100%;background:#2a211a;color:#fff;border:1px solid #3a2f26;padding:12px;border-radius:999px;cursor:pointer;font-weight:600}
+.addbag:hover{background:#3a2f26}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
-.chips button{background:#fff;color:#2b2118;border:1px solid #e5d9cc}
-.chips button.active{background:#2b2118;color:#fff}
+.chips button{background:#221b16;color:#f5efe6;border:1px solid #3a2f26;padding:9px 14px;border-radius:999px;cursor:pointer}
+.chips button.active{background:#f5efe6;color:#17120f}
 .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
 .toolbar input,.toolbar select{flex:1;min-width:180px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.card{background:#fff;border:1px solid #e5d9cc;padding:0 0 14px;border-radius:14px;overflow:hidden;transition:box-shadow .2s}
-.card:hover{box-shadow:0 10px 30px rgba(43,33,24,.12)}
-.card img{width:100%;height:220px;object-fit:cover;background:#eee;display:block}
-.card h3{margin:12px 14px 4px;font-size:18px}
-.card p{margin:4px 14px}
-.card .actions{margin:10px 14px 0;display:flex;gap:8px}
-.gallery img,.gallery video{width:100%;height:420px;object-fit:cover;border-radius:12px;background:#eee}
-button{background:#2b2118;color:#fff;border:0;padding:10px 16px;border-radius:9px;cursor:pointer;font-size:15px}
-button.secondary{background:#fff;color:#2b2118;border:1px solid #2b2118}
+.gallery img,.gallery video{width:100%;height:420px;object-fit:cover;border-radius:12px;background:#2a211a}
+button{background:#f5efe6;color:#17120f;border:0;padding:10px 16px;border-radius:999px;cursor:pointer;font-size:15px;font-weight:600}
+button.secondary{background:#221b16;color:#f5efe6;border:1px solid #3a2f26}
 button:hover{opacity:.92}
-input,select,textarea{padding:10px;border:1px solid #ccc;border-radius:9px;width:100%;box-sizing:border-box;font-size:15px}
+input,select,textarea{padding:10px;border:1px solid #3a2f26;border-radius:10px;width:100%;box-sizing:border-box;font-size:15px;background:#221b16;color:#f5efe6}
 label{display:block;margin:10px 0 4px;font-weight:bold}
-.muted{color:#7a6758}
+.muted{color:#b8a99a}
 .thumb{width:72px;height:56px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent}
-.thumb.active{border-color:#2b2118}
+.thumb.active{border-color:#f5efe6}
 table{width:100%;border-collapse:collapse}
-td,th{border-bottom:1px solid #eee;padding:8px;text-align:left}
-.notice{background:#fff3cd;padding:12px;border-radius:10px}
-.badge{display:inline-block;background:#8a4b2f;color:#fff;font-size:12px;padding:2px 8px;border-radius:20px;margin-left:6px}
-.demo{background:#fff;border:1px dashed #c9b8a8;border-radius:12px;padding:14px 18px;margin:32px 0}
-footer{border-top:1px solid #e5d9cc;margin-top:48px;padding:20px 0;color:#7a6758;font-size:14px}
+td,th{border-bottom:1px solid #2e261f;padding:8px;text-align:left}
+.notice{background:#2a211a;padding:12px;border-radius:10px}
+.badge{display:inline-block;background:#e0784a;color:#fff;font-size:12px;padding:2px 8px;border-radius:20px;margin-left:6px}
+.demo{background:#221b16;border:1px dashed #6b5b4c;border-radius:12px;padding:14px 18px;margin:32px 0}
+footer{border-top:1px solid #2e261f;margin-top:48px;padding:20px 0;color:#b8a99a;font-size:14px}
 .detail{display:grid;grid-template-columns:1.2fr 1fr;gap:28px}
-@media(max-width:760px){.detail{grid-template-columns:1fr}.hero h1{font-size:32px}.gallery img,.gallery video{height:280px}}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.catgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.detail{grid-template-columns:1fr}.hero h1{font-size:34px}.gallery img,.gallery video{height:280px}.grid{grid-template-columns:1fr}.catgrid{grid-template-columns:1fr}header .searchbox input{width:100%}}
 </style></head>
-<body><header><strong>Maison</strong><nav><a onclick="show('shop')">Shop</a><a onclick="show('cart')">Bag (<span id="bagCount">0</span>)</a><a onclick="show('account')">Account</a><a onclick="show('admin')">Admin</a><a onclick="show('track')">Track order</a></nav><span class="muted" style="margin-left:auto">TEST MODE payments — no real money</span></header>
+<body><div class="announce" id="announce">Free standard shipping over $75 · WELCOME10 for 10% off your first order</div><header><strong>Maison</strong><nav><a onclick="show('shop');window.scrollTo(0,0)">Shop all</a><a onclick="setCat('ceramics')">Ceramics</a><a onclick="setCat('textiles')">Textiles</a><a onclick="setCat('lighting')">Lighting</a><a onclick="setCat('furniture')">Furniture</a><a onclick="showPage('about')">About</a><a onclick="showPage('shipping')">Contact</a></nav><span class="searchbox"><input id="searchTop" placeholder="Search products…" onkeydown="if(event.key==='Enter'){ $('search').value=this.value; show('shop'); loadShop(); }"></span><span><a onclick="show('account')" style="cursor:pointer;margin-right:12px">♡</a><a onclick="show('account')" style="cursor:pointer;margin-right:12px">👤</a><a onclick="show('cart')" style="cursor:pointer">🛍 Bag (<span id="bagCount">0</span>)</a></span></header>
 <main>
-<section id="view-shop"><div class="hero"><h1>Home goods, made to be lived with</h1><p>Thoughtful ceramics, textiles, lighting and furniture for everyday living — real products, real checkout, in test mode.</p><p class="muted">42 products · 5 categories · Free standard shipping over $150</p><div class="chips" id="catChips"></div></div>
-<div class="toolbar"><input id="search" placeholder="Search products…" oninput="loadShop()"><select id="cat" onchange="loadShop()"><option value="">All categories</option></select><select id="sort" onchange="loadShop()"><option value="">Featured</option><option value="price_asc">Price: low to high</option><option value="price_desc">Price: high to low</option><option value="rating">Top rated</option><option value="name">Name A–Z</option></select></div><div id="suggest" class="muted"></div><div id="shopGrid" class="grid"></div><div id="pager"></div></section>
+<section id="view-shop"><div class="hero"><img id="heroImg" alt="Maison" src="/api/placeholder?key=throw&view=wide"><div class="shade"></div><div class="copy"><h1 id="heroTitle">Objects made to be kept</h1><p id="heroSub">Small-batch ceramics, natural textiles, and solid-wood pieces from independent makers — stocked, checked, and shipped by us.</p><div class="btnrow"><button class="btnwhite" onclick="document.getElementById('shopAll').scrollIntoView({behavior:'smooth'})">Shop the collection</button><button class="btndark" onclick="showPage('about')">Our story</button></div></div></div>
+<div class="section"><h2>Shop by room &amp; craft</h2><div class="catgrid" id="catCards"></div></div>
+<div class="section"><div class="head"><h2>Featured</h2><a onclick="show('shop');document.getElementById('shopAll').scrollIntoView()">Shop all →</a></div><div id="featuredGrid" class="grid"></div></div>
+<div class="section"><div class="head"><h2>Best sellers</h2><a onclick="show('shop');document.getElementById('shopAll').scrollIntoView()">Shop all →</a></div><div id="bestGrid" class="grid"></div></div>
+<div class="section"><div class="head"><h2>New arrivals</h2><a onclick="show('shop');document.getElementById('shopAll').scrollIntoView()">Shop all →</a></div><div id="newGrid" class="grid"></div></div>
+<div class="section" id="shopAll"><h2>Shop all</h2><div class="chips" id="catChips"></div><div class="toolbar"><input id="search" placeholder="Search products…" oninput="loadShop()"><select id="cat" onchange="loadShop()"><option value="">All categories</option></select><select id="sort" onchange="loadShop()"><option value="">Featured</option><option value="price_asc">Price: low to high</option><option value="price_desc">Price: high to low</option><option value="rating">Top rated</option><option value="name">Name A–Z</option></select></div><div id="suggest" class="muted"></div><div id="shopGrid" class="grid"></div><div id="pager"></div></div></section>
+<section id="view-page" style="display:none"><button class="secondary" onclick="show('shop')">← Back</button><div id="pageDetail"></div></section>
 
 <section id="view-product" style="display:none"><button class="secondary" onclick="show('shop')">← Back</button><div id="productDetail"></div></section>
 
@@ -52,7 +86,7 @@ footer{border-top:1px solid #e5d9cc;margin-top:48px;padding:20px 0;color:#7a6758
 <button onclick="show('checkout')">Checkout →</button></section>
 
 <section id="view-checkout" style="display:none"><h2>Checkout</h2><p class="notice">TEST MODE: use a test card. Card numbers and CVV are never stored.</p>
-<div style="max-width:500px"><label>Name</label><input id="coName"><label>Email</label><input id="coEmail"><label>Address</label><input id="coLine1"><label>City</label><input id="coCity"><label>ZIP</label><input id="coZip"><label>Shipping</label><select id="coShip"><option value="standard">Standard — $6.95 (free at $150+)</option><option value="express">Express — $18.99</option><option value="pickup">Pickup — free</option></select><label>Card number (test only)</label><input id="coCard" placeholder="Test card number"><label>Expiry</label><input id="coExp" value="12/30"><label>CVC</label><input id="coCvc" value="123"><label>Name on card</label><input id="coCardName"><div id="quote" class="muted"></div><button onclick="placeOrder()">Pay (test mode)</button><p id="orderMsg"></p></div></section>
+<div style="max-width:500px"><label>Name</label><input id="coName"><label>Email</label><input id="coEmail"><label>Address</label><input id="coLine1"><label>City</label><input id="coCity"><label>ZIP</label><input id="coZip"><label>Shipping</label><select id="coShip"><option value="standard">Standard — $6.95 (free at $75+)</option><option value="express">Express — $18.99</option><option value="pickup">Pickup — free</option></select><label>Card number (test only)</label><input id="coCard" placeholder="Test card number"><label>Expiry</label><input id="coExp" value="12/30"><label>CVC</label><input id="coCvc" value="123"><label>Name on card</label><input id="coCardName"><div id="quote" class="muted"></div><button onclick="placeOrder()">Pay (test mode)</button><p id="orderMsg"></p></div></section>
 
 <section id="view-account" style="display:none"><h2>Account</h2><div id="authBox"><label>Email</label><input id="authEmail"><label>Name</label><input id="authName"><label>Password</label><input id="authPass" type="password"><button onclick="register()">Create account</button> <button class="secondary" onclick="login()">Sign in</button><p id="authMsg" class="muted"></p></div><div id="myOrders"></div><div id="myNotes"></div></section>
 
@@ -61,17 +95,23 @@ footer{border-top:1px solid #e5d9cc;margin-top:48px;padding:20px 0;color:#7a6758
 <section id="view-track" style="display:none"><h2>Track an order</h2><label>Order number</label><input id="trNum" placeholder="MSN-1001"><label>Email</label><input id="trEmail"><button onclick="track()">Look up</button><div id="trackResult"></div></section>
 <div class="demo"><strong>Portfolio demo</strong> — try the whole store, including admin, with these public demo details:<br>
 Admin: <code>admin@maison.store</code> / <code>MaisonDemo123!</code> &nbsp;·&nbsp; Checkout: any test card number (format only, never stored) &nbsp;·&nbsp; Coupons: <code>WELCOME10</code>, <code>MAISON25</code>, <code>FREESHIP</code></div>
-<footer>Maison — a full-stack demo store. Payments are in test mode, no real money moves. Product photos are AI-generated catalogue images for this portfolio build.</footer>
+<footer>Maison — Considered goods for everyday living. Payments are in test mode, no real money moves. Product photos are AI-generated catalogue images for this portfolio build.</footer>
 </main>
 <script>
 const $=id=>document.getElementById(id); let session=localStorage.getItem('maison_session')||''; let cartToken=localStorage.getItem('maison_cart')||('cart_'+crypto.randomUUID()); localStorage.setItem('maison_cart',cartToken);
 const money=c=>'$'+(c/100).toFixed(2); const headers=()=>({'content-type':'application/json','x-session-token':session});
 async function api(p,body,method){ const r=await fetch(p,{method:method||(body?'POST':'GET'),headers:headers(),body:body?JSON.stringify(body):undefined}); return r.json(); }
-function show(v){ for(const s of ['shop','product','cart','checkout','account','admin','track']) $('view-'+s).style.display=s===v?'block':'none'; if(v==='cart') loadCart(); if(v==='admin') loadAdmin(); if(v==='account') loadAccount(); }
+function show(v){ for(const s of ['shop','product','cart','checkout','account','admin','track','page']) $('view-'+s).style.display=s===v?'block':'none'; if(v==='cart') loadCart(); if(v==='admin') loadAdmin(); if(v==='account') loadAccount(); }
+
+function stars(r){ if(!r) return ''; const full=Math.round(r); return '★'.repeat(full)+'☆'.repeat(5-full); }
+function cardHtml(p){ const img=(p.media&&p.media[0])?p.media[0].url:`/api/placeholder?key=${encodeURIComponent(p.imageKey)}&view=main`; const photos=(p.media?p.media.length:0)+7; return `<div class="card"><div class="imgwrap" onclick="viewProduct('${p.slug}')">${p.salePriceCents?`<span class='badge-sale'>Sale</span>`:''}<img src="${img}" alt="${p.name}" loading="lazy"><span class="badge-photos">${photos} photos</span><button class="heart" onclick="event.stopPropagation();toggleWish(${p.id})" title="Save to wishlist">♡</button></div><p class="cat">${p.categoryName||''}</p><h3 onclick="viewProduct('${p.slug}')">${p.name}</h3>${p.ratingCount?`<div class="stars">${stars(p.ratingAvg)} <span class="muted" style="color:#b8a99a">${p.ratingAvg.toFixed(1)} (${p.ratingCount})</span></div>`:''}<p class="price">${p.salePriceCents?`${money(p.salePriceCents)} <s>${money(p.priceCents)}</s>`:money(p.priceCents)}</p><button class="addbag" onclick="add(${p.id},null,1)">Add to bag</button></div>`; }
+async function toggleWish(pid){ if(!session){ alert('Sign in (Account tab) to save to your wishlist.'); show('account'); return; } const d=await api('/api/account/wishlist',{productId:pid}); alert(d.message||''); }
+async function showPage(slug){ const d=await api('/api/pages/'+slug); if(!d.ok){ show('shop'); return; } show('page'); $('pageDetail').innerHTML=`<h2>${d.page.title}</h2><p>${d.page.body}</p>`; }
+async function loadHome(){ try{ const hero=await api('/api/products/european-linen-throw'); if(hero.product&&hero.product.media&&hero.product.media[0]) $('heroImg').src=hero.product.media[0].url; }catch(e){} const s=await api('/api/settings-public'); if(s.announcement) $('announce').textContent=s.announcement; if(s.heroTitle) $('heroTitle').textContent=s.heroTitle; if(s.heroSubtitle) $('heroSub').textContent=s.heroSubtitle; const cats=await api('/api/categories'); $('catCards').innerHTML=cats.categories.map(c=>`<div class="catcard" onclick="setCat('${c.slug}')"><h3>${c.name}</h3><p>${c.productCount} products</p></div>`).join(''); const f=await api('/api/products?featured=1&pageSize=8'); $('featuredGrid').innerHTML=f.products.map(cardHtml).join(''); const b=await api('/api/products?sort=sales&pageSize=4'); $('bestGrid').innerHTML=b.products.map(cardHtml).join(''); const all=await api('/api/products?pageSize=50'); $('newGrid').innerHTML=[...all.products].sort((a,b)=>b.id-a.id).slice(0,4).map(cardHtml).join(''); }
 async function loadCats(){ const d=await api('/api/categories'); $('cat').innerHTML='<option value="">All categories</option>'+d.categories.map(c=>`<option value="${c.slug}">${c.name}</option>`).join(''); $('catChips').innerHTML='<button class="active" onclick="setCat(\'\',this)">All</button>'+d.categories.map(c=>`<button onclick="setCat('${c.slug}',this)">${c.name}</button>`).join(''); }
-function setCat(slug,btn){ $('cat').value=slug; document.querySelectorAll('#catChips button').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); page=1; loadShop(); }
+function setCat(slug,btn){ show('shop'); $('cat').value=slug; document.querySelectorAll('#catChips button').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); page=1; loadShop(); }
 let page=1;
-async function loadShop(){ const q=new URLSearchParams({search:$('search').value,category:$('cat').value,sort:$('sort').value,page,pageSize:12}); const d=await api('/api/products?'+q); $('shopGrid').innerHTML=d.products.map(p=>`<div class="card"><img src="${(p.media&&p.media[0])?p.media[0].url:`/api/placeholder?key=${encodeURIComponent(p.imageKey)}&view=main`}" alt="${p.name}" loading="lazy"><h3>${p.name}</h3><p>${p.salePriceCents?`<s>${money(p.priceCents)}</s> <b>${money(p.salePriceCents)}</b><span class='badge'>Sale</span>`:money(p.priceCents)}${p.ratingCount?` · ★ ${p.ratingAvg.toFixed(1)} (${p.ratingCount})`:''}</p><p class="muted">${p.categoryName} · Stock ${p.stock}</p><button onclick="viewProduct('${p.slug}')">View</button> <button class="secondary" onclick="add(${p.id},null,1)">Add to bag</button></div>`).join('')||'<p>No products found.</p>'; $('pager').innerHTML=`<button class="secondary" onclick="page=Math.max(1,page-1);loadShop()">Prev</button> Page ${d.page} of ${Math.ceil(d.total/d.pageSize)} <button class="secondary" onclick="page++;loadShop()">Next</button>`; if($('search').value.length>2){ const s=await api('/api/search?q='+encodeURIComponent($('search').value)); $('suggest').textContent='Suggestions: '+s.suggestions.map(x=>x.name).join(', '); } else $('suggest').textContent=''; }
+async function loadShop(){ const q=new URLSearchParams({search:$('search').value,category:$('cat').value,sort:$('sort').value,page,pageSize:12}); const d=await api('/api/products?'+q); $('shopGrid').innerHTML=d.products.map(cardHtml).join('')||'<p>No products found.</p>'; $('pager').innerHTML=`<button class="secondary" onclick="page=Math.max(1,page-1);loadShop()">Prev</button> Page ${d.page} of ${Math.ceil(d.total/d.pageSize)} <button class="secondary" onclick="page++;loadShop()">Next</button>`; if($('search').value.length>2){ const s=await api('/api/search?q='+encodeURIComponent($('search').value)); $('suggest').textContent='Suggestions: '+s.suggestions.map(x=>x.name).join(', '); } else $('suggest').textContent=''; }
 async function viewProduct(slug){ const d=await api('/api/products/'+slug); const p=d.product; show('product'); const media=p.media||[]; const gallery=[...media.map(m=>({url:m.url,kind:m.kind})), ...p.images.map(k=>({url:`/api/placeholder?key=${encodeURIComponent(k.split('-')[0]||p.imageKey)}&view=${k===p.imageKey?'main':k.replace(p.imageKey+'-','')}`,kind:'image'}))];
   $('productDetail').innerHTML=`<h2>${p.name}</h2><p class="muted">${p.categoryName} · SKU ${p.sku}</p><div class="gallery" id="stage">${gallery[0]?gallery[0].kind==='video'?`<video controls src="${gallery[0].url}"></video>`:`<img src="${gallery[0].url}" alt="${p.name}">`:'<p>No image</p>'}</div><div>${gallery.map((g,i)=>g.kind==='video'?`<button onclick="setStage(${i})">▶ Video</button>`:`<img class="thumb" src="${g.url}" onclick="setStage(${i})">`).join('')}</div><p>${p.salePriceCents?`<s>${money(p.priceCents)}</s> <b>${money(p.salePriceCents)}</b><span class='badge'>Sale</span>`:money(p.priceCents)} · ★ ${p.ratingAvg||0} (${p.ratingCount}) · Stock ${p.stock}</p><p>${p.description}</p><p class="muted">${Object.entries(JSON.parse(p.specs||'{}')).map(([k,v])=>k+': '+v).join(' · ')}</p>
   ${p.variants.map(v=>`<button onclick="add(${p.id},${v.id},1)">${v.name} ${v.priceDeltaCents?`(${v.priceDeltaCents>0?'+':''}${money(v.priceDeltaCents)})`:''} — Add</button>`).join(' ')} <button onclick="add(${p.id},null,1)">Add to bag</button>
@@ -100,7 +140,7 @@ async function loadAdminMedia(){
   for(const pr of d.products){
     const det = await api('/api/products/'+pr.slug);
     const media = det.product ? det.product.media : [];
-    html += `<div style="border:1px solid #e5d9cc;border-radius:12px;padding:14px;margin:12px 0"><h4>${pr.name} <span class="muted">(${pr.status})</span></h4><div style="display:flex;gap:8px;flex-wrap:wrap">` +
+    html += `<div style="border:1px solid #3a2f26;border-radius:12px;padding:14px;margin:12px 0"><h4>${pr.name} <span class="muted">(${pr.status})</span></h4><div style="display:flex;gap:8px;flex-wrap:wrap">` +
       (media.map(m=> m.kind==='video'
         ? `<span><video controls src="${m.url}" style="width:120px;height:90px;object-fit:cover;border-radius:8px"></video><br><button class="secondary" onclick="mediaDelete(${m.id})">Delete</button></span>`
         : `<span><img src="${m.url}" alt="" style="width:120px;height:90px;object-fit:cover;border-radius:8px"><br>${m.isMain?'★ Main ':''}<button class="secondary" onclick="mediaMain(${pr.id},[${media.map(x=>x.id).join(',')}],${m.id})">Make main</button> <button class="secondary" onclick="mediaDelete(${m.id})">Delete</button></span>`).join('') || '<span class="muted">No uploaded media yet — the catalogue illustration is used.</span>') +
@@ -118,5 +158,5 @@ async function mediaUpload(pid){
 async function mediaDelete(mid){ if(!confirm('Delete this media?')) return; const d=await api('/api/admin/media/delete',{mediaId:mid}); alert(d.message||''); loadAdminMedia(); }
 async function mediaMain(pid,ids,mid){ const order=[mid,...ids.filter(i=>i!==mid)]; const d=await api('/api/admin/media/reorder',{productId:pid,mediaIds:order}); alert(d.message||''); loadAdminMedia(); }
 
-loadCats(); loadShop(); updateBag();
+loadCats(); loadHome(); loadShop(); updateBag();
 </script></body></html>

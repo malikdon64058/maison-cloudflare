@@ -18,4 +18,4 @@ not_found_handling = "single-page-application"
 
 [vars]
 TAX_RATE_PERCENT = "8"
-FREE_SHIPPING_THRESHOLD_CENTS = "15000"
+FREE_SHIPPING_THRESHOLD_CENTS = "7500"

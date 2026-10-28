@@ -27,7 +27,7 @@ async function getCart(env: Env, token: string) {
 
 // ---------- public: catalogue ----------
 app.get('/api/categories', async (c) => {
-  const r = await c.env.DB.prepare('SELECT id,name,slug FROM categories ORDER BY id').all();
+  const r = await c.env.DB.prepare('SELECT c.id,c.name,c.slug,c.description,(SELECT COUNT(*) FROM products pr WHERE pr.category_id=c.id AND pr.status="active") AS productCount FROM categories c ORDER BY c.id').all();
   return ok({ categories: r.results });
 });
 app.get('/api/products', async (c) => {
@@ -38,7 +38,7 @@ app.get('/api/products', async (c) => {
   if (q.category) { const cat = await c.env.DB.prepare('SELECT id FROM categories WHERE slug=?').bind(q.category).first<any>(); if (cat) { where.push('p.category_id=?'); binds.push(cat.id); } }
   if (q.search) { where.push('(p.name LIKE ? OR p.description LIKE ?)'); binds.push(`%${q.search}%`, `%${q.search}%`); }
   if (q.featured === '1') where.push('p.featured=1');
-  const sort = q.sort === 'price_asc' ? 'COALESCE(p.sale_price_cents,p.price_cents) ASC' : q.sort === 'price_desc' ? 'COALESCE(p.sale_price_cents,p.price_cents) DESC' : q.sort === 'rating' ? 'p.rating_avg DESC' : q.sort === 'name' ? 'p.name ASC' : 'p.id ASC';
+  const sort = q.sort === 'price_asc' ? 'COALESCE(p.sale_price_cents,p.price_cents) ASC' : q.sort === 'price_desc' ? 'COALESCE(p.sale_price_cents,p.price_cents) DESC' : q.sort === 'rating' ? 'p.rating_avg DESC' : q.sort === 'name' ? 'p.name ASC' : q.sort === 'sales' ? 'p.sales_count DESC, p.id ASC' : 'p.id ASC';
   const total = await c.env.DB.prepare(`SELECT COUNT(*) n FROM products p WHERE ${where.join(' AND ')}`).bind(...binds).first<any>();
   const rows = await c.env.DB.prepare(`SELECT p.*, cat.name AS category_name FROM products p LEFT JOIN categories cat ON cat.id=p.category_id WHERE ${where.join(' AND ')} ORDER BY ${sort} LIMIT ? OFFSET ?`).bind(...binds, pageSize, (page - 1) * pageSize).all();
   const products = [] as any[]; for (const p of rows.results) products.push(await productView(c.env, p));
@@ -64,7 +64,12 @@ app.get('/api/pages/:slug', async (c) => {
 });
 app.get('/api/settings-public', async (c) => {
   const tax = await getSetting(c.env, 'tax_rate_percent', '8');
-  return ok({ taxRatePercent: parseInt(tax, 10), paymentsMode: 'TEST_MODE' });
+  const thr = await getSetting(c.env, 'free_shipping_threshold_cents', '7500');
+  const ann = await getSetting(c.env, 'announcement', 'Free standard shipping over $75 · WELCOME10 for 10% off your first order');
+  const ht = await getSetting(c.env, 'hero_title', 'Objects made to be kept');
+  const hs = await getSetting(c.env, 'hero_subtitle', '');
+  const tag = await getSetting(c.env, 'tagline', 'Considered goods for everyday living');
+  return ok({ taxRatePercent: parseInt(tax, 10), paymentsMode: 'TEST_MODE', freeShippingThresholdCents: parseInt(thr, 10), announcement: ann, heroTitle: ht, heroSubtitle: hs, tagline: tag });
 });
 
 // ---------- cart ----------
